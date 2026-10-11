@@ -1,0 +1,1364 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History of Psychology — Harshit Bangera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Special+Elite&family=Caveat:wght@500;700&family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#f0e4c6;
+  --paper2:#e8d7ae;
+  --card:#f7eed6;
+  --ink:#2c1f15;
+  --muted:#6b5238;
+  --sepia:#7a5632;
+  --burg:#7b2d26;
+  --gold:#a8812f;
+  --green:#34503f;
+  --line:rgba(90,60,30,.35);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;overflow:hidden}
+body{background:#000;font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;color:var(--ink)}
+.stage{
+  position:fixed;inset:0;overflow:hidden;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(ellipse at center,transparent 45%,rgba(95,60,25,.38) 100%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .38  0 0 0 0 .26  0 0 0 0 .12  0 0 0 .28 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  color:var(--ink);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-size:19px;
+}
+.frame{position:fixed;inset:14px 14px 74px;border:4px double var(--sepia);pointer-events:none;z-index:5}
+.frame::after{content:"";position:absolute;inset:6px;border:1px solid var(--line)}
+.deck{position:relative;height:100%}
+
+.slide{
+  position:absolute;inset:26px 26px 88px;
+  padding:clamp(14px,2.4vw,30px) clamp(16px,4.5vw,76px) 22px;
+  display:flex;flex-direction:column;
+  opacity:0;visibility:hidden;transform:translateY(14px);
+  transition:opacity .55s ease,transform .55s ease,visibility .55s;
+  overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--sepia) transparent;
+}
+/* safe vertical centring: content stays inside the frame and scrolls instead of spilling past it */
+.slide::before,.slide::after{content:"";flex:1 1 0;min-height:0}
+
+/* students-of-Wundt family tree */
+.tree{background:var(--card);border:1px solid var(--line);box-shadow:3px 3px 0 rgba(122,86,50,.25);padding:18px 20px;max-width:360px;width:100%;justify-self:center;transform:rotate(1.2deg)}
+.tree h4{font-family:'Special Elite',monospace;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--burg);margin-bottom:10px;font-weight:400}
+.tree .root{font-family:'Playfair Display',serif;font-weight:900;font-size:1.3rem;text-align:center;border:2px solid var(--burg);padding:6px 10px;color:var(--burg);background:rgba(123,45,38,.06)}
+.tree ul{margin:0;padding-left:14px;border-left:2px solid var(--sepia);margin-left:50%}
+.tree li{padding-left:22px;margin:0;font-size:1.02rem;line-height:1.25;position:relative;padding-top:10px;padding-bottom:2px}
+.tree li::before{content:"";position:absolute;left:-16px;top:1.45em;width:20px;height:2px;background:var(--sepia);font-size:0}
+.tree li b{display:block;font-family:'Playfair Display',serif;font-size:1.05rem}
+.tree li span{color:var(--muted);font-weight:500;font-size:.95rem}
+.slide.active{opacity:1;visibility:visible;transform:none}
+
+.kicker{font-family:'Special Elite',monospace;font-size:.82rem;letter-spacing:.2em;text-transform:uppercase;color:var(--burg);margin-bottom:10px}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--ink);line-height:1.08}
+h1{font-size:clamp(2.6rem,7.2vw,5.6rem);font-weight:900;color:var(--burg);text-shadow:2px 2px 0 rgba(168,129,47,.25)}
+h2{font-size:clamp(1.9rem,4.4vw,3.2rem);font-weight:900;margin-bottom:6px}
+h3{font-size:clamp(1.2rem,2.1vw,1.6rem);font-weight:700;margin-bottom:8px}
+.sub{font-style:italic;color:var(--muted);font-size:clamp(1.15rem,2vw,1.55rem);margin-top:14px;max-width:46ch}
+.orn{display:flex;align-items:center;gap:12px;color:var(--gold);margin:12px 0 14px;max-width:420px}
+.orn::before,.orn::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+ul{list-style:none;margin-top:6px}
+li{position:relative;padding-left:24px;margin:8px 0;font-size:clamp(1.1rem,1.75vw,1.4rem);line-height:1.4;font-weight:600}
+li::before{content:"◆";position:absolute;left:0;top:.2em;font-size:.6em;color:var(--burg)}
+b,strong{color:var(--burg);font-weight:700}
+
+.split{display:grid;grid-template-columns:1.55fr 1fr;gap:clamp(20px,4vw,56px);align-items:center}
+@media(max-width:860px){.split{grid-template-columns:1fr}}
+.cols{display:grid;grid-template-columns:repeat(2,1fr);gap:26px;margin-top:16px}
+@media(max-width:860px){.cols{grid-template-columns:1fr}}
+
+/* photos */
+.photo{background:#faf3df;padding:10px 10px 12px;box-shadow:0 10px 24px rgba(60,35,10,.35),0 0 0 1px rgba(90,60,30,.25);transform:rotate(-1.6deg);max-width:320px;justify-self:center;width:100%}
+.photo.r{transform:rotate(1.8deg)}
+.ph{position:relative;aspect-ratio:4/5;background:linear-gradient(145deg,#cdb78a,#a98d5c);overflow:hidden;display:flex;align-items:center;justify-content:center}
+.ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;filter:sepia(.8) contrast(1.08) brightness(.97) grayscale(.15)}
+.ph::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 40px rgba(60,35,10,.45);pointer-events:none}
+.ph .mono{display:none;font-family:'Playfair Display',serif;font-weight:900;font-size:3.4rem;color:rgba(60,35,10,.65);letter-spacing:.05em}
+.ph.fail img{display:none}
+.ph.fail .mono{display:block}
+.photo figcaption{font-family:'Caveat',cursive;font-size:1.25rem;color:var(--ink);text-align:center;margin-top:8px;line-height:1.1}
+.photo.sm{max-width:190px}
+.photo.sm figcaption{font-size:1.05rem}
+.mini{display:flex;gap:18px;align-items:flex-start}
+.mini .txt{flex:1}
+.mini .photo{flex:0 0 130px;max-width:130px;padding:6px 6px 8px}
+.mini .photo figcaption{font-size:.95rem}
+.mini .ph .mono{font-size:1.8rem}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:20px 24px;box-shadow:3px 3px 0 rgba(122,86,50,.25);position:relative}
+.card.burg{border-top:5px solid var(--burg)}
+.card.green{border-top:5px solid var(--green)}
+.card.gold{border-top:5px solid var(--gold)}
+.tag{display:inline-block;font-family:'Special Elite',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--card);background:var(--burg);padding:3px 10px;margin-bottom:8px}
+.tag.green{background:var(--green)}
+.tag.gold{background:var(--gold)}
+.key{margin-top:18px;display:inline-flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 16px;border:1.5px dashed var(--sepia);background:rgba(255,248,225,.55);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:600}
+.key .l{font-family:'Special Elite',monospace;color:var(--burg);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}
+.key .a{color:var(--burg)}
+.quote{font-family:'Playfair Display',serif;font-style:italic;font-weight:700;font-size:clamp(1.4rem,3.2vw,2.3rem);line-height:1.25;margin:10px 0;border-left:4px solid var(--burg);padding-left:20px;color:var(--ink)}
+.example{margin-top:14px;padding:12px 18px;border:1px solid var(--line);background:rgba(52,80,63,.1);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:600}
+.example .l{font-family:'Special Elite',monospace;color:var(--green);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;display:block}
+.big-year{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(3rem,9vw,6.2rem);color:transparent;-webkit-text-stroke:2px var(--burg);line-height:1}
+.row{display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+
+/* deep dive */
+details.deep{margin-top:18px;background:#f8f0d8;border:1px solid var(--line);border-left:5px solid var(--burg);box-shadow:3px 3px 0 rgba(122,86,50,.2)}
+details.deep summary{cursor:pointer;list-style:none;padding:10px 16px;font-family:'Special Elite',monospace;font-size:.85rem;letter-spacing:.12em;text-transform:uppercase;color:var(--burg)}
+details.deep summary::-webkit-details-marker{display:none}
+details.deep summary::before{content:"▸ "}
+details.deep[open] summary::before{content:"▾ "}
+details.deep summary small{color:var(--muted);text-transform:none;letter-spacing:0;font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic}
+details.deep .in{padding:2px 18px 12px}
+details.deep li{font-size:clamp(1rem,1.45vw,1.2rem);margin:6px 0;font-weight:500}
+
+/* chips */
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.chip{padding:8px 16px;border:1.5px solid var(--sepia);background:rgba(255,248,225,.6);font-size:clamp(1rem,1.5vw,1.2rem);font-weight:600}
+.chip b{color:var(--burg)}
+.chip.name{background:var(--burg);color:#f8edd0;border-color:var(--burg)}
+.chip.name b{color:#f1cf7a}
+.seal{position:absolute;right:clamp(16px,5vw,90px);top:50%;transform:translateY(-50%) rotate(-10deg);width:clamp(120px,19vw,230px);aspect-ratio:1;border-radius:50%;border:3px double var(--burg);color:var(--burg);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-family:'Special Elite',monospace;opacity:.85;background:rgba(123,45,38,.05)}
+.seal b{display:block;font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.2vw,3.2rem);color:var(--burg)}
+.seal span{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+@media(max-width:860px){.seal{display:none}}
+
+/* table */
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:clamp(1.05rem,1.6vw,1.3rem)}
+th,td{text-align:left;padding:8px 14px;border-bottom:1px dotted var(--sepia)}
+th{font-family:'Special Elite',monospace;font-size:.75rem;letter-spacing:.16em;text-transform:uppercase;color:var(--burg);border-bottom:2px solid var(--sepia)}
+td:first-child{font-weight:700}
+.final{margin-top:14px;font-size:clamp(1.1rem,1.7vw,1.35rem);font-style:italic;color:var(--muted);max-width:68ch}
+.thanks{font-family:'Playfair Display',serif;font-weight:900;font-size:clamp(1.4rem,3vw,2.2rem);color:var(--burg);margin-top:10px}
+.credit{font-size:.9rem;color:var(--muted);margin-top:6px;font-style:italic}
+.quote.de{font-size:clamp(1.15rem,2.3vw,1.8rem);margin-top:16px}
+.qtr{font-style:italic;color:var(--muted);font-size:clamp(1.05rem,1.6vw,1.3rem);margin:2px 0 0 24px}
+.qby{font-family:'Special Elite',monospace;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--burg);margin:4px 0 6px 24px}
+
+/* timeline */
+.tl-hint{font-style:italic;color:var(--muted);margin:4px 0 4px;font-size:1.1rem}
+.tl-wrap{overflow-x:auto;padding:10px 8px 14px;margin:0 -8px;scrollbar-width:thin;scrollbar-color:var(--sepia) transparent}
+.tl-track{position:relative;display:flex;min-width:max-content;gap:0}
+.tl-track::before{content:"";position:absolute;left:56px;right:56px;top:46px;height:3px;background:repeating-linear-gradient(90deg,var(--sepia) 0 10px,transparent 10px 16px)}
+.node{position:relative;flex:0 0 112px;background:none;border:none;cursor:pointer;color:var(--ink);font-family:inherit;text-align:center;padding:0 4px}
+.node .dot{display:block;width:22px;height:22px;margin:6px auto 8px;border-radius:50%;background:var(--paper);border:3px solid var(--sepia);transition:.25s;position:relative;z-index:1}
+.node .yr{display:block;font-family:'Playfair Display',serif;font-weight:900;font-size:1.25rem;line-height:30px;height:30px;color:var(--sepia);transition:.25s}
+.node .lb{display:block;font-size:.88rem;line-height:1.15;color:var(--muted);margin-top:2px;font-weight:600}
+.node:hover .dot{background:var(--gold);border-color:var(--gold);transform:scale(1.2)}
+.node.on .dot{background:var(--burg);border-color:var(--burg);transform:scale(1.55);box-shadow:0 0 0 5px rgba(123,45,38,.2)}
+.node.on .yr{color:var(--burg);font-size:1.45rem}
+.node.on .lb{color:var(--ink)}
+.node:focus-visible{outline:2px dashed var(--burg);outline-offset:4px}
+.tl-detail{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;margin-top:6px}
+@media(max-width:700px){.tl-detail{grid-template-columns:1fr}}
+.tl-detail .big-year{font-size:clamp(3.2rem,8vw,5.4rem)}
+.tl-who{font-family:'Special Elite',monospace;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--burg)}
+.tl-detail p{font-size:clamp(1.1rem,1.7vw,1.35rem);line-height:1.45;font-weight:600;margin-top:6px}
+.tl-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.tl-detail.swap{animation:fade .35s ease}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ===== theme-change layers ===== */
+.tlayer{position:fixed;inset:0;z-index:200;pointer-events:none}
+.tlayer .stage{position:absolute}
+.tcanvas{position:fixed;inset:0;width:100vw;height:100vh;z-index:201;pointer-events:none}
+@keyframes boot{
+  0%{opacity:0;transform:translateY(10px);filter:blur(6px) brightness(2.4)}
+  45%{opacity:1;filter:blur(1px) brightness(1.8)}
+  60%{opacity:.75;filter:none}
+  75%{opacity:1}
+  100%{opacity:1;transform:none;filter:none}
+}
+.stage.booting .slide.active > *{animation:boot .85s ease-out both}
+.stage.booting .slide.active > *:nth-child(2){animation-delay:.06s}
+.stage.booting .slide.active > *:nth-child(3){animation-delay:.14s}
+.stage.booting .slide.active > *:nth-child(4){animation-delay:.22s}
+.stage.booting .slide.active > *:nth-child(5){animation-delay:.30s}
+.stage.booting .slide.active > *:nth-child(6){animation-delay:.38s}
+.stage.booting .slide.active > *:nth-child(7){animation-delay:.46s}
+.stage.booting .slide.active > *:nth-child(n+8){animation-delay:.54s}
+
+/* ===== SCI-FI THEME · Part Two ===== */
+.stage[data-theme=sci]{
+  --paper:#030914;--paper2:#071428;--card:rgba(7,22,44,.84);--ink:#e3f6ff;--muted:#8db4d4;
+  --sepia:#1d6f9a;--burg:#19e3ff;--gold:#ff4fd8;--green:#7dff9b;--line:rgba(25,227,255,.32);
+  background-color:#030914;
+  background-image:
+    radial-gradient(900px 520px at 85% -10%,rgba(25,227,255,.16),transparent 60%),
+    radial-gradient(800px 520px at -10% 110%,rgba(255,79,216,.14),transparent 60%),
+    linear-gradient(rgba(25,227,255,.06) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(25,227,255,.06) 1px,transparent 1px);
+  background-size:auto,auto,44px 44px,44px 44px;
+  font-family:'Rajdhani',system-ui,sans-serif;font-size:20px;
+}
+.stage[data-theme=sci]::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:60;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.16) 2px 3px)}
+.stage[data-theme=sci] h1,.stage[data-theme=sci] h2,.stage[data-theme=sci] h3,.stage[data-theme=sci] .thanks{font-family:'Orbitron',sans-serif;letter-spacing:.02em}
+.stage[data-theme=sci] h1{font-size:clamp(2rem,5.2vw,4rem);color:var(--burg);text-shadow:0 0 18px rgba(25,227,255,.65),0 0 44px rgba(25,227,255,.25)}
+.stage[data-theme=sci] h2{font-size:clamp(1.4rem,3.2vw,2.4rem);color:#fff;text-shadow:0 0 14px rgba(25,227,255,.45)}
+.stage[data-theme=sci] h3{font-size:clamp(1rem,1.7vw,1.25rem);color:#fff}
+.stage[data-theme=sci] .sub{font-style:normal;color:var(--muted)}
+.stage[data-theme=sci] :is(.kicker,th,.tag,.key .l,.example .l,details.deep summary,details.srcs summary,.narr button,.foot,.count,.timer,button.b,button.go,.vpanel h4,.vpanel button,.notes .l,.diagram figcaption){font-family:'Share Tech Mono',monospace}
+.stage[data-theme=sci] li::before{content:"";width:8px;height:8px;background:var(--burg);transform:rotate(45deg);box-shadow:0 0 9px var(--burg);top:.55em;font-size:0}
+.stage[data-theme=sci] .flow li::before,.stage[data-theme=sci] details.srcs li::before{content:none}
+.stage[data-theme=sci] .frame{border:1px solid rgba(25,227,255,.55);box-shadow:0 0 22px rgba(25,227,255,.28),inset 0 0 26px rgba(25,227,255,.1);border-radius:3px}
+.stage[data-theme=sci] .frame::after{inset:6px;border:1px dashed rgba(255,79,216,.35)}
+.stage[data-theme=sci] .card{background:linear-gradient(160deg,rgba(10,32,60,.88),rgba(5,16,34,.92));border:1px solid var(--line);border-radius:6px;box-shadow:0 0 18px rgba(25,227,255,.12),inset 0 0 22px rgba(25,227,255,.05)}
+.stage[data-theme=sci] .tag{border-radius:2px}
+.stage[data-theme=sci] .key,.stage[data-theme=sci] .example{background:rgba(25,227,255,.07);border:1px dashed rgba(25,227,255,.55);color:var(--ink)}
+.stage[data-theme=sci] details.deep{background:rgba(6,18,38,.88);border:1px solid var(--line);border-left:4px solid var(--gold);box-shadow:0 0 14px rgba(255,79,216,.12)}
+.stage[data-theme=sci] details.deep summary small{font-family:'Rajdhani',sans-serif}
+.stage[data-theme=sci] .chip{background:rgba(25,227,255,.08);border:1px solid var(--line);color:var(--ink)}
+.stage[data-theme=sci] .final{font-style:normal}
+.stage[data-theme=sci] .flow li{border-color:var(--burg);box-shadow:0 0 12px rgba(25,227,255,.3)}
+.stage[data-theme=sci] .diagram{border-radius:6px;box-shadow:0 0 18px rgba(25,227,255,.15)}
+.stage[data-theme=sci] .reading .hl{background:rgba(255,79,216,.28);box-shadow:0 0 10px rgba(255,79,216,.35)}
+.stage[data-theme=sci] .key.reading,.stage[data-theme=sci] .example.reading,.stage[data-theme=sci] .chip.reading{background:rgba(255,79,216,.18);outline:2px solid var(--gold)}
+.stage[data-theme=sci] tr.reading td{background:rgba(255,79,216,.2)}
+.stage[data-theme=sci] .bar{background:rgba(2,8,18,.94);color:#cfeaff;border-top:1px solid rgba(25,227,255,.6);box-shadow:0 -4px 22px rgba(25,227,255,.18)}
+.stage[data-theme=sci] .foot b{color:#19e3ff}
+.stage[data-theme=sci] button.b{color:#cfeaff;border-color:rgba(25,227,255,.45)}
+.stage[data-theme=sci] button.b:hover{background:#19e3ff;color:#021018;border-color:#19e3ff}
+.stage[data-theme=sci] .timer{color:#19e3ff;border-color:rgba(25,227,255,.45)}
+.stage[data-theme=sci] .progress{box-shadow:0 0 12px rgba(25,227,255,.8)}
+.stage[data-theme=sci] .vpanel,.stage[data-theme=sci] .notes{background:#06142a;color:#d7efff;border-color:#19e3ff;box-shadow:0 0 24px rgba(25,227,255,.3)}
+.stage[data-theme=sci] .vpanel h4,.stage[data-theme=sci] .notes .l{color:#19e3ff}
+.stage[data-theme=sci] .vpanel select{background:#0a1f3d;color:#d7efff;border-color:#19e3ff}
+.stage[data-theme=sci] .vpanel button{background:#19e3ff;color:#021018}
+.stage[data-theme=sci] .vpanel input[type=range]{accent-color:#19e3ff}
+.stage[data-theme=sci] svg [fill="#e9c9b8"]{fill:rgba(255,79,216,.2)}
+.stage[data-theme=sci] svg [fill="#d9bf8a"]{fill:rgba(141,180,212,.3)}
+.stage[data-theme=sci] svg [fill="#e3c27a"]{fill:rgba(25,227,255,.2)}
+.stage[data-theme=sci] svg [fill="#b9cdb8"]{fill:rgba(125,255,155,.2)}
+.stage[data-theme=sci] svg [fill="#7b2d26"]{fill:#ff4fd8}
+.stage[data-theme=sci] svg [stroke="#7b2d26"]{stroke:#ff4fd8}
+.stage[data-theme=sci] svg [stroke="#7a5632"]{stroke:#19e3ff}
+.stage[data-theme=sci] svg [stroke="#34503f"]{stroke:#7dff9b}
+.stage[data-theme=sci] .sv-t,.stage[data-theme=sci] .sv-s{fill:#e3f6ff}
+
+/* part two: endocrine */
+.ptable th,.ptable td{padding:6px 12px;font-size:clamp(.95rem,1.35vw,1.12rem);vertical-align:top}
+.ptable td:first-child{min-width:110px}
+ul.flow{display:flex;flex-wrap:wrap;gap:26px;align-items:stretch;margin:12px 0 8px}
+.flow li{margin:0;padding:8px 12px;border:1.5px solid var(--sepia);background:var(--card);font-size:clamp(.95rem,1.4vw,1.15rem);position:relative;box-shadow:2px 2px 0 rgba(122,86,50,.25)}
+.flow li::before{content:none}
+.flow li:not(:last-child)::after{content:"\2192";position:absolute;right:-20px;top:50%;transform:translateY(-50%);color:var(--burg);font-weight:700;font-size:1.2rem}
+.diagram{background:var(--card);border:1px solid var(--line);box-shadow:3px 3px 0 rgba(122,86,50,.25);padding:10px 10px 6px;max-width:430px;width:100%;justify-self:center;transform:rotate(1deg)}
+.diagram svg{width:100%;height:auto;display:block}
+.diagram figcaption{font-family:'Caveat',cursive;font-size:1.1rem;text-align:center;margin-top:2px}
+.sv-t{font-family:'Cormorant Garamond',Georgia,serif;font-weight:700;fill:#2c1f15;font-size:14px}
+.sv-s{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;fill:#2c1f15;font-size:13px}
+.mf{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px}
+@media(max-width:1000px){.mf{grid-template-columns:1fr}}
+.mf .card{padding:14px 16px}
+.mf h3{font-size:1.2rem;margin-bottom:4px}
+.mf p{font-weight:600;line-height:1.35;font-size:1.02rem}
+.mf .tag{font-size:.66rem}
+.mf .tag.green{margin-top:8px}
+details.srcs{margin-top:12px}
+details.srcs summary{cursor:pointer;list-style:none;font-family:'Special Elite',monospace;color:var(--burg);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase}
+details.srcs summary::-webkit-details-marker{display:none}
+details.srcs summary::before{content:"\25B8  "}
+details.srcs[open] summary::before{content:"\25BE  "}
+details.srcs ol{margin:6px 0 0 22px}
+details.srcs li{padding:0;margin:2px 0;font-size:.92rem;font-weight:500}
+details.srcs li::before{content:none}
+details.srcs a{color:var(--burg)}
+
+/* modern era */
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:12px}
+@media(max-width:1100px){.cols3{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.cols3{grid-template-columns:1fr}}
+.names .card{padding:14px 16px}
+.names .mini{gap:14px;align-items:center}
+.names .mini .photo{flex:0 0 92px;max-width:92px;padding:5px 5px 7px}
+.names .mini .photo figcaption{font-size:.85rem}
+.names .mini .ph .mono{font-size:1.4rem}
+.names .card h3{font-size:1.15rem;margin-bottom:4px}
+.names .card p{font-weight:600;font-size:1.02rem;line-height:1.3}
+.names .tag{font-size:.64rem;margin-bottom:4px}
+.tbl-wrap{overflow-x:auto}
+.findings th,.findings td{padding:6px 12px;font-size:clamp(.98rem,1.4vw,1.15rem)}
+.findings td:nth-child(3){white-space:nowrap;color:var(--burg);font-weight:700}
+
+/* narrator */
+.narr{display:flex;align-items:center;gap:8px;margin:0 0 12px;flex:0 0 auto}
+.narr button{font-family:'Special Elite',monospace;font-size:.82rem;letter-spacing:.06em;cursor:pointer;border:1.5px solid var(--burg);padding:7px 14px;background:var(--burg);color:var(--card);transition:.2s}
+.narr button:hover{background:var(--green);border-color:var(--green)}
+.narr .stopb{background:transparent;color:var(--burg);padding:7px 10px;display:none}
+.narr .stopb:hover{color:var(--card)}
+.narr:not([data-state=idle]) .stopb{display:inline-block}
+.narr .eq{display:none;gap:3px;align-items:flex-end;height:18px}
+.narr[data-state=playing] .eq{display:inline-flex}
+.eq i{display:block;width:3px;height:100%;background:var(--burg);transform-origin:bottom;animation:eq 1s ease-in-out infinite}
+.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}.eq i:nth-child(4){animation-delay:.1s}
+@keyframes eq{0%,100%{transform:scaleY(.25)}50%{transform:scaleY(1)}}
+details.deep .in .narr{margin:8px 0 4px}
+.hl{-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:2px 5px;margin:0 -5px;border-radius:3px;transition:background .3s}
+.reading .hl{background:rgba(168,129,47,.42)}
+.key.reading,.example.reading,.chip.reading{background:rgba(168,129,47,.35);outline:2px solid var(--burg);outline-offset:3px}
+tr.reading{background:none}
+tr.reading td{background:rgba(168,129,47,.35)}
+.vpanel{position:fixed;right:14px;bottom:74px;width:min(340px,92vw);background:#2c1f15;color:#f4e8c8;border:2px solid var(--gold);padding:14px 16px;z-index:45;box-shadow:0 18px 40px rgba(0,0,0,.5);opacity:0;pointer-events:none;transform:translateY(12px);transition:.3s}
+.vpanel.show{opacity:1;pointer-events:auto;transform:none}
+.vpanel h4{font-family:'Special Elite',monospace;font-weight:400;letter-spacing:.14em;text-transform:uppercase;font-size:.78rem;color:#e6c26a;margin-bottom:8px}
+.vpanel label{display:block;font-size:.95rem;margin:8px 0 2px}
+.vpanel select{width:100%;font-family:inherit;font-size:.95rem;padding:5px;background:#f4e8c8;color:#2c1f15;border:1px solid var(--gold)}
+.vpanel input[type=range]{width:100%;accent-color:#e6c26a}
+.vpanel button{margin-top:10px;font-family:'Special Elite',monospace;font-size:.8rem;cursor:pointer;background:#e6c26a;color:#2c1f15;border:none;padding:7px 12px}
+.vpanel .vnote{font-size:.88rem;font-style:italic;opacity:.85;margin-top:10px;line-height:1.3}
+@media(max-width:700px){#fsBtn{display:none}}
+
+/* notes */
+.notes{position:fixed;left:50%;bottom:74px;transform:translate(-50%,20px);width:min(780px,92vw);background:#2c1f15;color:#f4e8c8;border:2px solid var(--gold);padding:14px 20px;font-size:1.1rem;line-height:1.45;opacity:0;pointer-events:none;transition:.3s;z-index:30;box-shadow:0 18px 40px rgba(0,0,0,.5)}
+.notes.show{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.notes .l{font-family:'Special Elite',monospace;color:#e6c26a;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;display:block;margin-bottom:4px}
+
+/* bar */
+.bar{position:fixed;left:0;right:0;bottom:0;height:60px;z-index:40;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 clamp(10px,3vw,30px);background:#3a281a;color:#f1e3bf;border-top:3px double #a8812f}
+.foot{font-family:'Special Elite',monospace;font-size:.78rem;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;opacity:.9}
+.foot b{color:#f1cf7a}
+.ctrl{display:flex;gap:6px;align-items:center}
+button.b{font-family:'Special Elite',monospace;font-size:.78rem;cursor:pointer;color:#f1e3bf;background:transparent;border:1px solid rgba(241,227,191,.45);padding:7px 11px;transition:.2s}
+button.b:hover{background:#f1cf7a;color:#3a281a;border-color:#f1cf7a}
+button.go{font-family:'Special Elite',monospace;font-size:.82rem;cursor:pointer;color:var(--card);background:var(--burg);border:none;padding:8px 14px;letter-spacing:.06em;transition:.2s}
+button.go:hover{background:var(--green)}
+button.go.ghost{background:transparent;color:var(--burg);border:1.5px solid var(--burg)}
+button.go.ghost:hover{background:var(--burg);color:var(--card)}
+.count{font-family:'Special Elite',monospace;font-size:.8rem;min-width:50px;text-align:center}
+.timer{font-family:'Special Elite',monospace;font-size:.72rem;border:1px solid rgba(241,227,191,.4);padding:3px 9px;color:#f1cf7a;white-space:nowrap}
+.progress{position:fixed;top:0;left:0;height:5px;background:linear-gradient(90deg,var(--burg),var(--gold));width:0;transition:width .4s;z-index:50}
+@media(max-width:700px){.foot{display:none}.timer{display:none}.frame{inset:8px 8px 70px}.slide{inset:18px 16px 78px}}
+</style>
+</head>
+<body>
+<div class="stage" id="stage" data-theme="vintage">
+<div class="progress" id="progress"></div>
+<div class="frame"></div>
+
+<main class="deck" id="deck">
+
+  <!-- 1 · TITLE -->
+  <section class="slide" data-time="20 sec" data-say="Today I will briefly discuss how psychology developed as a scientific discipline and the major psychologists and approaches that shaped it.">
+    <div class="seal"><span>Leipzig</span><b>1879</b><span>Psychology begins</span></div>
+    <div class="kicker">Psychology Major · FYBA · Semester I</div>
+    <h1>History of<br>Psychology</h1>
+    <div class="orn">❦</div>
+    <p class="sub">From the first laboratory to modern schools of thought</p>
+    <div class="meta">
+      <div class="chip name">Presented by <b>Harshit Bangera</b></div>
+      <div class="chip">Roll No. <b>1115</b></div>
+      <div class="chip">Class <b>FYBA</b></div>
+      <div class="chip">Subject <b>Psychology (Major)</b></div>
+    </div>
+  </section>
+
+  <!-- 2 · TIMELINE -->
+  <section class="slide" id="timelineSlide" data-time="20 sec · or use in Q&amp;A" data-say="Here is a quick timeline of how these ideas unfolded, from Wundt's laboratory in 1879 to Mary Cover Jones's work in 1924. Each date links to the slide that explains it.">
+    <div class="kicker">The Big Picture</div>
+    <h2>A Timeline of Early Psychology</h2>
+    <p class="tl-hint">Click any date to explore it — or use the arrows.</p>
+    <div class="tl-wrap" id="tlWrap"><div class="tl-track" id="tlTrack"></div></div>
+    <div class="card gold" style="margin-top:4px">
+      <div class="tl-detail" id="tlDetail">
+        <div class="big-year" id="tlYear">1879</div>
+        <div>
+          <div class="tl-who" id="tlWho"></div>
+          <h3 id="tlTitle" style="margin-top:4px"></h3>
+          <p id="tlText"></p>
+          <div class="tl-actions">
+            <button class="go ghost" id="tlPrev">← Earlier</button>
+            <button class="go ghost" id="tlNext">Later →</button>
+            <button class="go" id="tlOpen">Open this slide ↗</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · WUNDT -->
+  <section class="slide" data-time="30 sec" data-say="Wundt was important because he helped establish psychology as an independent scientific discipline in 1879.">
+    <div class="split">
+      <div>
+        <div class="kicker">Beginning of Scientific Psychology</div>
+        <div class="row">
+          <div class="big-year">1879</div>
+          <h2>Wilhelm Wundt</h2>
+        </div>
+        <ul>
+          <li>Established a <b>psychology laboratory in Leipzig, Germany</b>.</li>
+          <li>Considered a major founder of psychology as a <b>scientific discipline</b>.</li>
+          <li>Studied <b>consciousness</b> using <b>objective introspection</b>.</li>
+          <li>Focused on basic components: <b>thoughts, emotions and sensations</b>.</li>
+        </ul>
+        <div class="key"><span class="l">Key point</span> Wundt <span class="a">→</span> 1879 <span class="a">→</span> Leipzig <span class="a">→</span> Objective Introspection</div>
+        <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+          <li>Trained as a <b>physician</b>; worked as an assistant to the physicist-physiologist Hermann von Helmholtz.</li>
+          <li>He was the first person to call himself a <b>psychologist</b>, and is widely called the “father of experimental psychology”.</li>
+          <li><b>Objective introspection</b> meant trained self-observation under strict experimental control — not casual armchair reflection.</li>
+          <li>His lab used instruments such as <b>chronoscopes</b> to time mental reactions, studying sensation, attention and reaction time.</li>
+        </ul></div></details>
+      </div>
+      <figure class="photo">
+        <div class="ph"><img data-src="Wilhelm_Wundt_portrait.jpg|Wilhelm_Wundt.jpg" alt="Wilhelm Wundt" loading="lazy"><span class="mono">W.W.</span></div>
+        <figcaption>Wilhelm Wundt<br>1832 – 1920</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 4 · WUNDT'S LEGACY -->
+  <section class="slide" data-time="25 sec" data-say="Wundt's laboratory soon became a training centre. His textbook, his journal and his students carried the new science across Europe and America.">
+    <div class="split">
+      <div>
+        <div class="kicker">From Laboratory to Movement</div>
+        <div class="row">
+          <div class="big-year">1883</div>
+          <h2>Leipzig Becomes a Centre</h2>
+        </div>
+        <ul>
+          <li><b>1874:</b> his <i>Principles of Physiological Psychology</i> — the first textbook of experimental psychology.</li>
+          <li><b>1883:</b> the first psychology journal, <i>Philosophische Studien</i>, and <b>official university recognition</b> of the laboratory.</li>
+          <li>Students arrived from <b>all over the world</b> — about 185 doctoral dissertations, 70 by foreign students.</li>
+        </ul>
+        <div class="key"><span class="l">Key point</span> Wundt's students <span class="a">→</span> carried psychology across the world</div>
+        <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+          <li>The journal ran as <i>Philosophische Studien</i> (1883–1903), then as <i>Psychologische Studien</i> (1905–1917).</li>
+          <li>Eighteen of his foreign doctoral students were American, so he sits in the “family tree” of most early American psychologists.</li>
+          <li>In a 1991 survey, historians of psychology ranked Wundt first for all-time eminence, with William James and Freud second and third.</li>
+        </ul></div></details>
+      </div>
+      <div class="tree">
+        <h4>Students of Wundt</h4>
+        <div class="root">Wundt · Leipzig</div>
+        <ul>
+          <li><b>E. B. Titchener</b><span>Structuralism, Cornell</span></li>
+          <li><b>J. McKeen Cattell</b><span>First US psychology professor</span></li>
+          <li><b>G. Stanley Hall</b><span>Child psychology, Clark Univ.</span></li>
+          <li><b>Hugo Münsterberg</b><span>Applied psychology, Harvard</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · STRUCTURALISM & FUNCTIONALISM -->
+  <section class="slide" data-time="1 min" data-say="Titchener, a student of Wundt, took his ideas to America and built Structuralism around the structure of the mind. William James wrote Principles of Psychology in 1890 and focused on the purpose of consciousness, which became Functionalism.">
+    <div class="kicker">Early Schools of Thought</div>
+    <h2>Structuralism &amp; Functionalism</h2>
+    <div class="cols">
+      <div class="card burg">
+        <div class="mini">
+          <div class="txt">
+            <span class="tag">Structuralism</span>
+            <h3>Edward Titchener</h3>
+            <ul>
+              <li>Student of Wundt; took his ideas to America.</li>
+              <li>Studied the <b>structure of the mind</b>.</li>
+              <li>Basic <b>sensations and emotions</b>.</li>
+            </ul>
+          </div>
+          <figure class="photo sm">
+            <div class="ph"><img data-src="Edward_Bradford_Titchener.jpg|Edward_B._Titchener.jpg|Titchener.jpg" alt="Edward Titchener" loading="lazy"><span class="mono">E.T.</span></div>
+            <figcaption>Titchener<br>1867–1927</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="card green">
+        <div class="mini">
+          <div class="txt">
+            <span class="tag green">Functionalism</span>
+            <h3>William James</h3>
+            <ul>
+              <li><i>Principles of Psychology</i>, <b>1890</b>.</li>
+              <li>The <b>purpose and function of consciousness</b>.</li>
+              <li>How the mind helps us <b>adapt and survive</b>.</li>
+            </ul>
+          </div>
+          <figure class="photo sm r">
+            <div class="ph"><img data-src="William_James_b1842c.jpg|William_James.jpg" alt="William James" loading="lazy"><span class="mono">W.J.</span></div>
+            <figcaption>James<br>1842–1910</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="key"><span class="l">Easy memory</span> Titchener = Structure <span class="a">|</span> James = Function</div>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li><b>Titchener</b> likened the mind to chemistry: just as water breaks into hydrogen and oxygen, experience breaks into basic sensations. His method was strict introspection — describe the raw sensation, not the object's name.</li>
+      <li>At Cornell he built the largest doctoral programme of his time; his first student, <b>Margaret Floy Washburn</b>, became the first woman to earn a psychology PhD (1894). He also introduced the English word <b>“empathy”</b> (1909).</li>
+      <li><b>James</b> trained as a physician but never practised; <i>Principles</i> took him twelve years and ran to about 1,200 pages. It gave us the <b>“stream of consciousness”</b>.</li>
+      <li>The <b>James–Lange theory</b>: we don't run because we fear the bear — we fear it because we notice ourselves running.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- 5 · GESTALT -->
+  <section class="slide" data-time="40 sec" data-say="Gestalt psychologists believed we perceive whole patterns, not just separate parts. A melody is more than its notes, and these ideas later influenced cognitive psychology.">
+    <div class="split">
+      <div>
+        <div class="kicker">Gestalt Psychology</div>
+        <h2>Max Wertheimer &amp; the Gestalt Psychologists</h2>
+        <div class="quote">“The whole is greater than the sum of its parts.”</div>
+        <ul>
+          <li>Focused on <b>sensation and perception</b>.</li>
+          <li>People naturally organise information into <b>whole patterns</b>.</li>
+          <li>An experience can't always be understood from its parts.</li>
+          <li>Later influenced <b>cognitive psychology</b>.</li>
+        </ul>
+        <div class="example"><span class="l">Example</span>A melody is more than individual notes — the <b>relationship between the notes</b> creates the melody.</div>
+        <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+          <li>“Gestalt” is German for <b>form</b> or <b>shape</b>. Key figures: Wertheimer, Kurt Koffka and Wolfgang Köhler.</li>
+          <li>It began with Wertheimer's <b>phi phenomenon</b> (1912): two lights flashing in turn look like one moving light, though nothing moves.</li>
+          <li>A reaction against structuralism's habit of splitting experience into elements.</li>
+          <li>Classic principles: <b>proximity, similarity, closure, continuity</b> and figure–ground. Designers still use them today.</li>
+        </ul></div></details>
+      </div>
+      <figure class="photo r">
+        <div class="ph"><img data-src="Max_Werheimer_(1880-1943).jpg|Max_Wertheimer.jpg" alt="Max Wertheimer" loading="lazy"><span class="mono">M.W.</span></div>
+        <figcaption>Max Wertheimer<br>1880 – 1943</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 6 · FREUD -->
+  <section class="slide" data-time="40 sec" data-say="Freud's psychoanalysis focused on the unconscious mind and the role of early childhood experiences, and it strongly influenced psychotherapy.">
+    <div class="split">
+      <div>
+        <div class="kicker">Psychoanalysis</div>
+        <h2>Sigmund Freud</h2>
+        <ul>
+          <li>Focused on the <b>unconscious mind</b>.</li>
+          <li>Hidden urges and desires could be <b>repressed</b>.</li>
+          <li>Unconscious conflicts could influence behaviour.</li>
+          <li>Stressed <b>early childhood experiences</b>.</li>
+          <li>Strongly influenced <b>psychotherapy</b>.</li>
+        </ul>
+        <div class="key"><span class="l">Remember</span> Freud <span class="a">→</span> Unconscious mind + Childhood</div>
+        <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+          <li>A Vienna neurologist whose tools were <b>free association</b> and <b>dream analysis</b>; <i>The Interpretation of Dreams</i> appeared at the end of 1899 (dated 1900).</li>
+          <li>His model of personality has three parts: the <b>id</b> (urges), the <b>ego</b> (reality) and the <b>superego</b> (conscience).</li>
+          <li><b>Defence mechanisms</b> such as repression and denial protect us from anxiety.</li>
+          <li>Often criticised as hard to test scientifically — Wundt himself stayed sceptical of the unconscious — yet the “talking cure” shaped modern therapy.</li>
+        </ul></div></details>
+      </div>
+      <figure class="photo">
+        <div class="ph"><img data-src="Sigmund_Freud_LIFE.jpg|Sigmund_Freud,_by_Max_Halberstadt_(cropped).jpg|Sigmund_Freud_1921.jpg" alt="Sigmund Freud" loading="lazy"><span class="mono">S.F.</span></div>
+        <figcaption>Sigmund Freud<br>1856 – 1939</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7 · BEHAVIOURISM -->
+  <section class="slide" data-time="1 min" data-say="Watson developed Behaviourism and studied observable behaviour. In the Little Albert experiment, fear was learned through conditioning. Mary Cover Jones later showed that learned fears can be reduced through counterconditioning.">
+    <div class="kicker">Behaviourism</div>
+    <h2>John B. Watson</h2>
+    <ul>
+      <li>Developed <b>Behaviourism</b>: <b>observable, measurable behaviour</b>.</li>
+      <li>Behaviour is learned through <b>conditioning</b>.</li>
+    </ul>
+    <div class="cols">
+      <div class="card burg">
+        <div class="mini">
+          <div class="txt">
+            <span class="tag">Little Albert</span>
+            <p style="font-weight:600;line-height:1.4;font-size:1.15rem">Watson and Rosalie Rayner paired a <b>white rat with a loud noise</b>. Albert came to fear the rat — <b>fear could be learned</b>.</p>
+          </div>
+          <figure class="photo sm">
+            <div class="ph"><img data-src="John_Broadus_Watson.JPG|John_B._Watson.jpg|Watson_John_B.jpg" alt="John B. Watson" loading="lazy"><span class="mono">J.W.</span></div>
+            <figcaption>J. B. Watson<br>1878–1958</figcaption>
+          </figure>
+        </div>
+      </div>
+      <div class="card green">
+        <div class="mini">
+          <div class="txt">
+            <span class="tag green">Mary Cover Jones</span>
+            <p style="font-weight:600;line-height:1.4;font-size:1.15rem">Showed that learned fears can be <b>reduced through counterconditioning</b>.</p>
+          </div>
+          <figure class="photo sm r">
+            <div class="ph"><img data-src="Mary_Cover_Jones.jpg|Mary_Cover_Jones.png" alt="Mary Cover Jones" loading="lazy"><span class="mono">M.C.J.</span></div>
+            <figcaption>M. Cover Jones<br>1897–1987</figcaption>
+          </figure>
+        </div>
+      </div>
+    </div>
+    <div class="key"><span class="l">Remember</span> Little Albert <span class="a">→</span> Fear learned <span class="a">|</span> Little Peter <span class="a">→</span> Fear reduced</div>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li>Watson's 1913 article “Psychology as the Behaviorist Views It” is often called the <b>behaviourist manifesto</b>; he rejected introspection and built on Pavlov's conditioning.</li>
+      <li><b>Little Albert</b> (about 1920) was a baby of roughly nine months; his fear spread to similar furry things. The study would not pass today's ethics rules — and helped push research ethics forward.</li>
+      <li><b>Mary Cover Jones</b> (1924) treated a young boy, Peter, by showing a rabbit at a distance while he ate, then moving it gradually closer. She is often called the <b>“mother of behaviour therapy”</b>.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- 9 · MODERN NAMES -->
+  <section class="slide names" data-time="30 sec" data-say="After these early schools, psychology branched out. Maslow and Rogers introduced the humanistic view, Skinner and Bandura developed learning theory, Piaget mapped how children think, and Kahneman showed how our thinking shortcuts can mislead us.">
+    <div class="kicker">The Modern Era</div>
+    <h2>Modern Names in Psychology</h2>
+    <div class="cols3">
+      <div class="card gold"><div class="mini">
+        <figure class="photo sm"><div class="ph"><img alt="Abraham Maslow" loading="lazy"><span class="mono">A.M.</span></div><figcaption>1908–1970</figcaption></figure>
+        <div class="txt"><span class="tag gold">Humanistic</span><h3>Abraham Maslow</h3><p>Hierarchy of needs: people are driven to grow, from basic needs up to self-actualisation.</p></div>
+      </div></div>
+      <div class="card gold"><div class="mini">
+        <figure class="photo sm r"><div class="ph"><img alt="Carl Rogers" loading="lazy"><span class="mono">C.R.</span></div><figcaption>1902–1987</figcaption></figure>
+        <div class="txt"><span class="tag gold">Humanistic</span><h3>Carl Rogers</h3><p>Person-centred therapy: empathy and unconditional positive regard help people change.</p></div>
+      </div></div>
+      <div class="card burg"><div class="mini">
+        <figure class="photo sm"><div class="ph"><img alt="B. F. Skinner" loading="lazy"><span class="mono">B.F.S.</span></div><figcaption>1904–1990</figcaption></figure>
+        <div class="txt"><span class="tag">Behavioural</span><h3>B. F. Skinner</h3><p>Operant conditioning: behaviour is shaped by its consequences, reward and punishment.</p></div>
+      </div></div>
+      <div class="card burg"><div class="mini">
+        <figure class="photo sm r"><div class="ph"><img alt="Albert Bandura" loading="lazy"><span class="mono">A.B.</span></div><figcaption>1925–2021</figcaption></figure>
+        <div class="txt"><span class="tag">Social learning</span><h3>Albert Bandura</h3><p>We learn by watching others, and our belief in ourselves, self-efficacy, shapes what we try.</p></div>
+      </div></div>
+      <div class="card green"><div class="mini">
+        <figure class="photo sm"><div class="ph"><img alt="Jean Piaget" loading="lazy"><span class="mono">J.P.</span></div><figcaption>1896–1980</figcaption></figure>
+        <div class="txt"><span class="tag green">Child development</span><h3>Jean Piaget</h3><p>Children think in distinct stages, from sensorimotor to formal operations.</p></div>
+      </div></div>
+      <div class="card green"><div class="mini">
+        <figure class="photo sm r"><div class="ph"><img alt="Daniel Kahneman" loading="lazy"><span class="mono">D.K.</span></div><figcaption>1934–2024</figcaption></figure>
+        <div class="txt"><span class="tag green">Judgement</span><h3>Daniel Kahneman</h3><p>With Amos Tversky, showed that mental shortcuts cause predictable errors. Nobel Prize in Economics, 2002.</p></div>
+      </div></div>
+    </div>
+    <div class="key"><span class="l">Remember</span> Maslow and Rogers = growth <span class="a">|</span> Skinner and Bandura = learning <span class="a">|</span> Piaget = child thinking <span class="a">|</span> Kahneman = thinking errors</div>
+    <details class="deep"><summary>In depth <small>— more modern names</small></summary><div class="in"><ul>
+      <li><b>George Miller</b> (1956) showed we hold about seven items in short-term memory, and <b>Ulric Neisser</b>'s 1967 book <i>Cognitive Psychology</i> gave the field its name.</li>
+      <li><b>Elizabeth Loftus</b> showed that eyewitness memory can be changed by how a question is asked.</li>
+      <li><b>John Bowlby</b> and <b>Mary Ainsworth</b> built attachment theory: early bonds shape later relationships.</li>
+      <li><b>Martin Seligman</b> led the positive psychology movement from 1998, studying strengths and wellbeing, not only illness.</li>
+      <li><b>Applied psychology:</b> Wundt's students Münsterberg and Scott opened the way for industrial and organisational psychology, followed by the Hawthorne studies of the 1920s and early 1930s.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- 8 · CONCLUSION -->
+  <section class="slide" data-time="35 sec" data-say="To conclude, the history of psychology shows how the field developed from studying consciousness and mental experiences into a broad scientific study of behaviour and mental processes. Thank you.">
+    <div class="kicker">Conclusion</div>
+    <h2>Major Developments</h2>
+    <table>
+      <thead><tr><th>Psychologist</th><th>Main Contribution</th></tr></thead>
+      <tbody>
+        <tr><td>Wundt</td><td>Scientific psychology</td></tr>
+        <tr><td>Titchener</td><td>Structuralism</td></tr>
+        <tr><td>William James</td><td>Functionalism</td></tr>
+        <tr><td>Wertheimer</td><td>Gestalt</td></tr>
+        <tr><td>Freud</td><td>Psychoanalysis</td></tr>
+        <tr><td>Watson</td><td>Behaviourism</td></tr>
+        <tr><td>Mary Cover Jones</td><td>Counterconditioning</td></tr>
+      </tbody>
+    </table>
+    <p class="final">Psychology developed through different approaches, each offering a different way of understanding <b>human behaviour and mental processes</b>.</p>
+    <details class="deep"><summary>In depth <small>— how it connects to today</small></summary><div class="in"><ul>
+      <li>Gestalt ideas fed into <b>cognitive psychology</b>; Freud shaped <b>psychotherapy</b>; behaviourism led to <b>behaviour therapy</b>.</li>
+      <li>Functionalism's focus on usefulness helped <b>applied psychology</b>: Wundt's students Hugo Münsterberg and Walter Dill Scott pioneered applied and industrial psychology.</li>
+    </ul></div></details>
+    <div class="quote de" lang="de">„Wir sprechen von Tugend, Ehre, Vernunft; aber unser Denken übersetzt keinen dieser Begriffe in eine Substanz.“</div>
+    <div class="qtr">“We speak of virtue, honour, reason; but our thinking translates none of these concepts into a substance.”</div>
+    <div class="qby">— Wilhelm Wundt</div>
+    <div class="thanks">Thank you — Harshit Bangera · Roll No. 1115 · FYBA</div>
+    <div class="credit">Portraits via Wikimedia Commons.</div>
+  </section>
+
+  <!-- ============ PART TWO · ENDOCRINE SYSTEM ============ -->
+
+  <!-- P2-1 · DIVIDER -->
+  <section class="slide" data-time="15 sec" data-say="Now let's connect the mind to the body. Part two explains the endocrine system, the pituitary gland, and how hormones and brain chemicals shape mood, stress and behaviour.">
+    <div class="kicker">Part Two · The Biological Perspective</div>
+    <h1>The Endocrine System<br>&amp; the Mind</h1>
+    <div class="orn">❦</div>
+    <p class="sub">How hormones, the pituitary gland and brain chemicals shape mood, stress and behaviour</p>
+    <div class="meta"><div class="chip">Psychology Major · <b>Biological basis of behaviour</b></div></div>
+  </section>
+
+  <!-- P2-2 · OVERVIEW -->
+  <section class="slide" data-time="45 sec" data-say="The endocrine system is made of glands that release hormones into the blood. Compared with the nervous system it is slower and more widespread, but its effects last longer.">
+    <div class="kicker">Part Two · The Endocrine System</div>
+    <h2>The Body's Chemical Messengers</h2>
+    <ul>
+      <li>Glands release <b>hormones</b> straight into the <b>bloodstream</b>.</li>
+      <li>Each hormone acts on <b>target cells</b> that carry the matching receptors.</li>
+      <li>Main glands: <b>hypothalamus, pituitary, pineal, thyroid, parathyroids, adrenals, pancreas, ovaries and testes</b>.</li>
+      <li>Works with the nervous system to control <b>mood, stress, sleep, growth, metabolism and reproduction</b>.</li>
+    </ul>
+    <div class="tbl-wrap"><table class="ptable">
+      <thead><tr><th></th><th>Nervous system</th><th>Endocrine system</th></tr></thead>
+      <tbody>
+        <tr><td>Messenger</td><td>Neurotransmitters crossing a synapse</td><td>Hormones travelling in the blood</td></tr>
+        <tr><td>Speed</td><td>Milliseconds</td><td>Seconds to hours, sometimes longer</td></tr>
+        <tr><td>Reach</td><td>Specific, targeted cells</td><td>Widespread: any cell with the receptor</td></tr>
+        <tr><td>Duration</td><td>Brief</td><td>Longer-lasting</td></tr>
+      </tbody>
+    </table></div>
+    <div class="key"><span class="l">Remember</span> Nervous system = fast and precise <span class="a">|</span> Endocrine system = slower, widespread, long-lasting</div>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li>The <b>hypothalamus</b> links the two systems: it is brain tissue that controls the pituitary gland.</li>
+      <li>Hormone levels are kept in balance by <b>negative feedback</b>, like a thermostat switching a heater off once the room is warm.</li>
+      <li>Some chemicals, such as dopamine and noradrenaline, work in both systems. Later slides compare their two jobs.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- P2-3 · PITUITARY -->
+  <section class="slide" data-time="45 sec" data-say="The pituitary is a pea-sized gland hanging from the hypothalamus. Its front lobe makes six hormones under the hypothalamus's control, and its back lobe releases oxytocin and ADH, which are made in the hypothalamus.">
+    <div class="split">
+      <div>
+        <div class="kicker">Part Two · The Pituitary Gland</div>
+        <h2>The “Master Gland”</h2>
+        <ul>
+          <li>A <b>pea-sized</b> gland at the base of the brain, hanging from the <b>hypothalamus</b> by a stalk.</li>
+          <li>Two parts: the <b>anterior</b> (front) lobe and the <b>posterior</b> (back) lobe.</li>
+          <li><b>Anterior:</b> the hypothalamus sends releasing and inhibiting hormones down tiny blood vessels, and the lobe makes its own hormones.</li>
+          <li><b>Posterior:</b> oxytocin and ADH are made in the hypothalamus and released here along nerve fibres.</li>
+          <li>Called “master” because its hormones control other glands, yet the hypothalamus controls the pituitary.</li>
+        </ul>
+        <div class="key"><span class="l">Chain of command</span> Hypothalamus <span class="a">→</span> Pituitary <span class="a">→</span> Target glands</div>
+        <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+          <li>The posterior lobe grows out of the hypothalamus itself, so it is neural tissue. The anterior lobe develops from the lining of the embryo's mouth region.</li>
+          <li>The hypothalamus controls most anterior hormones by <b>releasing</b> signals. Prolactin is the exception: it is mainly held back by an <b>inhibiting</b> signal, dopamine.</li>
+          <li>Damage or tumours here can cause hormone problems that show up as changes in mood, energy, sex drive and growth.</li>
+        </ul></div></details>
+      </div>
+      <figure class="diagram">
+        <svg viewBox="0 0 420 372" role="img" aria-label="Simplified diagram of the hypothalamus and pituitary gland">
+          <defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#7b2d26"/></marker></defs>
+          <ellipse cx="210" cy="58" rx="110" ry="40" fill="#e9c9b8" stroke="#7b2d26" stroke-width="2.5"/>
+          <text x="210" y="64" text-anchor="middle" class="sv-t" style="font-size:18px">Hypothalamus</text>
+          <rect x="199" y="96" width="22" height="86" fill="#d9bf8a" stroke="#7a5632" stroke-width="2"/>
+          <text x="232" y="146" class="sv-s">stalk</text>
+          <ellipse cx="150" cy="224" rx="68" ry="44" fill="#e3c27a" stroke="#7a5632" stroke-width="2.5"/>
+          <text x="150" y="222" text-anchor="middle" class="sv-t">Anterior</text>
+          <text x="150" y="240" text-anchor="middle" class="sv-t">pituitary</text>
+          <ellipse cx="266" cy="216" rx="42" ry="40" fill="#b9cdb8" stroke="#34503f" stroke-width="2.5"/>
+          <text x="266" y="214" text-anchor="middle" class="sv-t">Posterior</text>
+          <text x="266" y="232" text-anchor="middle" class="sv-t">pituitary</text>
+          <path d="M172 94 C138 128 128 160 140 182" fill="none" stroke="#7b2d26" stroke-width="2.5" stroke-dasharray="5 4" marker-end="url(#ah)"/>
+          <path d="M213 100 L213 168 C213 180 240 176 252 178" fill="none" stroke="#34503f" stroke-width="2.5" marker-end="url(#ah)"/>
+          <text x="150" y="292" text-anchor="middle" class="sv-s">ACTH · TSH · GH</text>
+          <text x="150" y="309" text-anchor="middle" class="sv-s">Prolactin · FSH · LH</text>
+          <text x="276" y="292" text-anchor="middle" class="sv-s">Oxytocin</text>
+          <text x="276" y="309" text-anchor="middle" class="sv-s">ADH (vasopressin)</text>
+          <line x1="14" y1="338" x2="48" y2="338" stroke="#7b2d26" stroke-width="2.5" stroke-dasharray="5 4"/>
+          <text x="56" y="342" class="sv-s">Hormones carried by blood vessels</text>
+          <line x1="14" y1="358" x2="48" y2="358" stroke="#34503f" stroke-width="2.5"/>
+          <text x="56" y="362" class="sv-s">Nerve fibres carrying oxytocin and ADH</text>
+        </svg>
+        <figcaption>Simplified, not to scale</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- P2-4 · PITUITARY HORMONES -->
+  <section class="slide" data-time="50 sec" data-say="Each pituitary hormone has a target. ACTH drives cortisol, TSH drives the thyroid, prolactin makes milk and is held back by dopamine, and oxytocin and ADH come from the back lobe.">
+    <div class="kicker">Part Two · The Pituitary Gland</div>
+    <h2>Pituitary Hormones and Their Effects</h2>
+    <div class="tbl-wrap"><table class="ptable">
+      <thead><tr><th>Hormone</th><th>Lobe</th><th>What it does</th><th>Why it matters for mind and body</th></tr></thead>
+      <tbody>
+        <tr><td>ACTH</td><td>Anterior</td><td>Tells the adrenal glands to release cortisol</td><td>The starting signal of the stress response</td></tr>
+        <tr><td>TSH</td><td>Anterior</td><td>Tells the thyroid to release thyroid hormones</td><td>Thyroid imbalance is linked to depression and anxiety</td></tr>
+        <tr><td>Growth hormone</td><td>Anterior</td><td>Drives growth and affects metabolism</td><td>Too little in childhood slows growth; too much can cause gigantism</td></tr>
+        <tr><td>Prolactin</td><td>Anterior</td><td>Stimulates milk production</td><td>Held in check by dopamine; high levels can lower sex drive</td></tr>
+        <tr><td>FSH and LH</td><td>Anterior</td><td>Tell the ovaries and testes to make sex hormones, eggs and sperm</td><td>Sex hormones affect mood, drive and development</td></tr>
+        <tr><td>Oxytocin</td><td>Posterior</td><td>Triggers labour contractions and milk release</td><td>Linked to bonding and trust; research findings are mixed</td></tr>
+        <tr><td>ADH (vasopressin)</td><td>Posterior</td><td>Makes the kidneys hold on to water</td><td>Also acts in the brain during stress and social behaviour</td></tr>
+      </tbody>
+    </table></div>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li>ACTH and the body's natural painkillers, <b>endorphins</b>, are cut from the same large precursor molecule, POMC.</li>
+      <li>Antipsychotic drugs block dopamine receptors, including in the pituitary, which can <b>raise prolactin</b> in the blood.</li>
+      <li>Oxytocin and ADH are each made of just nine amino acids, yet have very different jobs.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- P2-5 · STRESS / HPA -->
+  <section class="slide" data-time="45 sec" data-say="Stress runs through the pituitary. The hypothalamus releases CRH, the pituitary releases ACTH, and the adrenal glands release cortisol. Cortisol then switches the system off. When this feedback fails, mood can suffer.">
+    <div class="kicker">Part Two · Stress and the Mind</div>
+    <h2>The Stress Axis: Hypothalamus, Pituitary, Adrenals</h2>
+    <ul class="flow">
+      <li><b>Stressor</b> noticed by the brain</li>
+      <li><b>Hypothalamus</b> releases CRH</li>
+      <li><b>Anterior pituitary</b> releases ACTH</li>
+      <li><b>Adrenal cortex</b> releases cortisol</li>
+    </ul>
+    <ul>
+      <li>Cortisol frees up energy and helps the body cope with <b>short-term</b> stress.</li>
+      <li>It then tells the hypothalamus and pituitary to slow down: a <b>negative feedback loop</b>.</li>
+      <li>A faster route: sympathetic nerves tell the <b>adrenal medulla</b> to release adrenaline and noradrenaline for fight or flight.</li>
+      <li>In depression, studies often find <b>raised cortisol and CRH</b>, weaker feedback and a smaller hippocampus.</li>
+    </ul>
+    <div class="key"><span class="l">Careful</span> These are links seen in studies, not proof that cortisol alone causes depression</div>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li>Cortisol follows a daily rhythm, rising in the early morning and falling through the day.</li>
+      <li>Vasopressin (ADH) boosts CRH's push on the pituitary during stress.</li>
+      <li>Too much cortisol (Cushing's syndrome) commonly brings depression or anxiety; too little (Addison's disease) commonly brings fatigue and low mood.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- P2-6 · MENTAL HEALTH -->
+  <section class="slide" data-time="45 sec" data-say="Hormones and mood affect each other. Thyroid problems, chronic stress, big changes in sex hormones and disturbed body clocks are all linked to mood and anxiety problems, but mental health always has many causes.">
+    <div class="kicker">Part Two · Hormones and Mental Health</div>
+    <h2>When Hormones Meet Mood</h2>
+    <div class="cols">
+      <div class="card gold"><h3>Thyroid hormones</h3><p style="font-weight:600;line-height:1.4;font-size:1.1rem">Too little (hypothyroidism) is linked to depression; too much (hyperthyroidism) is linked more to anxiety. Treating the thyroid problem often helps mood.</p></div>
+      <div class="card burg"><h3>Stress hormones</h3><p style="font-weight:600;line-height:1.4;font-size:1.1rem">Chronic stress can keep the stress axis switched on. Over-active stress hormones are linked to depression and anxiety.</p></div>
+      <div class="card green"><h3>Sex hormones</h3><p style="font-weight:600;line-height:1.4;font-size:1.1rem">Oestrogen, progesterone and testosterone influence mood, energy and drive. Big hormonal changes, such as after childbirth, are periods of higher risk for mood problems.</p></div>
+      <div class="card gold"><h3>Melatonin</h3><p style="font-weight:600;line-height:1.4;font-size:1.1rem">The pineal gland releases it in the dark, setting the sleep–wake rhythm. Disturbed body clocks are linked to sleep problems and to depression with a seasonal pattern.</p></div>
+    </div>
+    <p class="final">Hormones influence mood, but mental health problems have many causes: biology, thoughts, experiences and surroundings.</p>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li>The link runs <b>both ways</b>: stress and mood change hormone release, and hormones change mood.</li>
+      <li>Many of these are associations. In thyroid disorders, researchers are still unsure how far the link is causal.</li>
+      <li>A hormone change is usually a risk factor, rarely the only cause, so treatment looks at the whole person.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- P2-7 · SAME NAME DIFFERENT JOB -->
+  <section class="slide" data-time="45 sec" data-say="Some chemicals work as both neurotransmitters and hormones, and the job depends on where they are released. Dopamine, noradrenaline, oxytocin and serotonin all show this.">
+    <div class="kicker">Part Two · Neurotransmitter or Hormone?</div>
+    <h2>Same Name, Different Job</h2>
+    <div class="tbl-wrap"><table class="ptable">
+      <thead><tr><th>Chemical</th><th>In the brain and nerves (neurotransmitter)</th><th>In the body and blood (hormone or local messenger)</th></tr></thead>
+      <tbody>
+        <tr><td>Dopamine</td><td>Brain pathways for movement, motivation and reward</td><td>Released by the hypothalamus into the pituitary's blood supply, where it stops prolactin being released</td></tr>
+        <tr><td>Noradrenaline</td><td>Alertness and attention (locus coeruleus); messenger of sympathetic nerves</td><td>Released by the adrenal medulla, with adrenaline, for fight or flight</td></tr>
+        <tr><td>Oxytocin</td><td>Acts in the brain; linked to bonding and trust, though findings are mixed</td><td>Released by the posterior pituitary: labour contractions and milk release</td></tr>
+        <tr><td>Serotonin</td><td>Mood, appetite and sleep</td><td>About 90 percent is made in the gut, where it moves food along; platelets store it and use it in clotting</td></tr>
+      </tbody>
+    </table></div>
+    <div class="key"><span class="l">Remember</span> Same molecule <span class="a">|</span> different place <span class="a">|</span> different job</div>
+    <details class="deep"><summary>In depth <small>— press D or click</small></summary><div class="in"><ul>
+      <li>Dopamine in the blood cannot cross the <b>blood–brain barrier</b>, so it does not act as a brain chemical. Parkinson's is treated with L-DOPA, which can enter the brain and be turned into dopamine.</li>
+      <li>The brain makes its own serotonin, in the raphe nuclei of the brainstem. Gut serotonin is a separate pool.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- P2-8 · DOPAMINE FACT-CHECK -->
+  <section class="slide" data-time="45 sec" data-say="Dopamine is often misunderstood. Parkinson's is caused by too little dopamine in movement circuits, not too much. As a hormone, dopamine controls prolactin. Too much activity in certain brain pathways is linked to psychosis.">
+    <div class="kicker">Part Two · Fact-Check</div>
+    <h2>Dopamine: Myths and Facts</h2>
+    <div class="mf">
+      <div class="card burg">
+        <span class="tag">Myth</span>
+        <h3>Too much dopamine causes Parkinson's disease</h3>
+        <span class="tag green">Fact</span>
+        <p>Parkinson's comes from the loss of dopamine-producing neurons in the substantia nigra, so movement circuits get too little dopamine. Symptoms usually appear after 60 to 80 percent or more of these cells are lost. Treatment aims to raise dopamine, for example with L-DOPA.</p>
+      </div>
+      <div class="card burg">
+        <span class="tag">Myth</span>
+        <h3>The dopamine hormone is the happiness hormone</h3>
+        <span class="tag green">Fact</span>
+        <p>As a hormone, dopamine's best-known job is to stop the pituitary releasing prolactin. Reward and motivation come from dopamine acting as a neurotransmitter in brain pathways, and research suggests it drives wanting and motivation more than pleasure itself.</p>
+      </div>
+      <div class="card gold">
+        <span class="tag gold">Too much</span>
+        <h3>Dopamine and psychosis</h3>
+        <p>Over-active dopamine in the brain's mesolimbic pathway is linked to psychosis, in the dopamine hypothesis of schizophrenia, though it is only part of the story. Dopamine-raising drugs such as L-DOPA can cause psychotic side effects, and antipsychotics work by blocking D2 receptors.</p>
+      </div>
+    </div>
+    <div class="key"><span class="l">Remember</span> Too little in movement circuits = Parkinson's <span class="a">|</span> Too much in reward circuits = psychosis risk <span class="a">|</span> As a hormone = controls prolactin</div>
+    <details class="deep"><summary>In depth <small>— the four dopamine pathways</small></summary><div class="in"><ul>
+      <li><b>Nigrostriatal:</b> movement. Loss of its neurons causes Parkinson's.</li>
+      <li><b>Mesolimbic:</b> reward and motivation. Over-activity is linked to psychosis.</li>
+      <li><b>Mesocortical:</b> thinking and motivation.</li>
+      <li><b>Tuberoinfundibular:</b> hypothalamus to pituitary, controlling prolactin. Blocking it can raise prolactin.</li>
+    </ul></div></details>
+  </section>
+
+  <!-- P2-9 · TAKEAWAYS -->
+  <section class="slide" data-time="30 sec" data-say="To sum up: hormones are chemical messengers, the pituitary is run by the hypothalamus, stress and mood are tied together through the stress axis, and the same chemical can do very different jobs as a neurotransmitter and as a hormone.">
+    <div class="kicker">Part Two · Key Takeaways</div>
+    <h2>What to Remember</h2>
+    <ul>
+      <li>Hormones are chemical messengers in the blood; the <b>hypothalamus and pituitary</b> are the control centre.</li>
+      <li>The anterior pituitary releases <b>ACTH, TSH, GH, prolactin, FSH and LH</b>; the posterior releases <b>oxytocin and ADH</b>.</li>
+      <li>The <b>stress axis</b> links stress to mood; chronic stress is linked to depression and anxiety.</li>
+      <li>The <b>same chemical can do different jobs</b> as a neurotransmitter and as a hormone.</li>
+      <li>Parkinson's is <b>too little</b> dopamine in movement circuits, not too much.</li>
+    </ul>
+    <div class="thanks">Thank you — Harshit Bangera · Roll No. 1115 · FYBA</div>
+    <details class="srcs"><summary>Sources</summary><ol>
+      <li>Parkinson's disease and dopamine loss (NINDS figures, as quoted): <a href="https://malacards.org/card/parkinsons_disease" target="_blank" rel="noopener">MalaCards</a>; motor system chapter: <a href="https://opentext.uoregon.edu/animalphysiology/chapter/neurodegenerative-diseases-motor/" target="_blank" rel="noopener">University of Oregon</a></li>
+      <li>Dopamine as the prolactin-inhibiting hormone: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4515538" target="_blank" rel="noopener">PMC4515538</a>; <a href="https://en.wikipedia.org/wiki/Tuberoinfundibular_pathway" target="_blank" rel="noopener">Tuberoinfundibular pathway</a></li>
+      <li>Pituitary structure and hormones: <a href="https://www.statpearls.com/articlelibrary/viewarticle/767/" target="_blank" rel="noopener">StatPearls, Physiology, Pituitary Gland</a></li>
+      <li>HPA axis and depression: <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC181180" target="_blank" rel="noopener">PMC181180</a></li>
+      <li>Serotonin distribution: <a href="https://www.ncbi.nlm.nih.gov/books/NBK560856/" target="_blank" rel="noopener">StatPearls, Biochemistry, Serotonin</a></li>
+      <li>Noradrenaline as neurotransmitter and hormone: <a href="https://www.surlab.org/wp-content/uploads/2025/08/Chapter2.pdf" target="_blank" rel="noopener">Sur lab chapter</a></li>
+      <li>Dopamine hypothesis of schizophrenia: <a href="https://en.wikipedia.org/wiki/Dopamine_hypothesis_of_schizophrenia" target="_blank" rel="noopener">Wikipedia</a></li>
+      <li>Thyroid and mood: <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13442034/" target="_blank" rel="noopener">European Psychiatry review</a></li>
+    </ol></details>
+  </section>
+
+</main>
+
+<div class="vpanel" id="vpanel">
+  <h4>Narrator voice</h4>
+  <label for="vsel">Voice</label>
+  <select id="vsel"></select>
+  <label for="vrate">Pace (slower = more elegant)</label>
+  <input type="range" id="vrate" min="0.6" max="1.2" step="0.02" value="0.88">
+  <label for="vpitch">Pitch (lower = warmer)</label>
+  <input type="range" id="vpitch" min="0.6" max="1.3" step="0.02" value="0.95">
+  <button id="vtest">▶ Test voice</button>
+  <p class="vnote">Defaults to a British (en-GB) female voice. If none is listed with “(en-GB)”, your device doesn't have one: in Microsoft Edge try “Sonia” or “Libby” (Natural), on iPhone or Mac try “Serena” or “Kate”.</p>
+</div>
+
+<div class="notes" id="notes"><span class="l">Say · <span id="ntime"></span></span><span id="ntext"></span></div>
+
+<div class="bar">
+  <div class="foot"><b>Harshit Bangera</b> · Roll No. 1115 · FYBA Psychology · History of Psychology</div>
+  <div class="ctrl">
+    <span class="timer" id="timer">⏱ 20 sec</span>
+    <button class="b" id="voiceBtn" title="Narrator voice settings">Voice</button>
+    <button class="b" id="tlBtn" title="Timeline (T)">Timeline</button>
+    <button class="b" id="notesBtn" title="Speaker notes (N)">Notes</button>
+    <button class="b" id="fsBtn" title="Fullscreen (F)">Full</button>
+    <button class="b" id="prev" aria-label="Previous">←</button>
+    <span class="count" id="count">1 / 19</span>
+    <button class="b" id="next" aria-label="Next">→</button>
+  </div>
+</div>
+
+</div><!-- /stage -->
+
+<script>
+(function(){
+  /* ---------- portraits with fallbacks ---------- */
+  /* Each portrait is looked up through Wikipedia's own image API first (so it always
+     matches the article's lead photo), then falls back to known Commons file names,
+     then to a monogram frame. */
+  var wikiTitle={
+    'Wilhelm Wundt':'Wilhelm_Wundt','Edward Titchener':'Edward_B._Titchener','William James':'William_James',
+    'Max Wertheimer':'Max_Wertheimer','Sigmund Freud':'Sigmund_Freud','John B. Watson':'John_B._Watson',
+    'Mary Cover Jones':'Mary_Cover_Jones',
+    'Abraham Maslow':'Abraham_Maslow','Carl Rogers':'Carl_Rogers','B. F. Skinner':'B._F._Skinner',
+    'Albert Bandura':'Albert_Bandura','Jean Piaget':'Jean_Piaget','Daniel Kahneman':'Daniel_Kahneman'
+  };
+  var imgs=[].slice.call(document.querySelectorAll('.ph img'));
+  function loadPortraits(map){
+    imgs.forEach(function(img){
+      var srcs=[],t=wikiTitle[img.getAttribute('alt')];
+      if(t&&map[t])srcs.push(map[t]);
+      (img.getAttribute('data-src')||'').split('|').forEach(function(f){
+        if(f)srcs.push('https://commons.wikimedia.org/wiki/Special:FilePath/'+encodeURI(f)+'?width=600');
+      });
+      var k=0;
+      function nextTry(){
+        if(k>=srcs.length){img.parentNode.classList.add('fail');return}
+        img.src=srcs[k++];
+      }
+      img.onerror=nextTry;
+      nextTry();
+    });
+  }
+  (function(){
+    var titles=Object.keys(wikiTitle).map(function(k){return wikiTitle[k]});
+    var url='https://en.wikipedia.org/w/api.php?action=query&prop=pageimages&format=json&pithumbsize=600&redirects=1&origin=*&titles='+titles.join('|');
+    var map={};
+    fetch(url).then(function(r){return r.json()}).then(function(j){
+      var q=j.query||{};
+      function resolve(t){
+        t=t.replace(/_/g,' ');
+        (q.normalized||[]).forEach(function(n){if(n.from===t)t=n.to});
+        (q.redirects||[]).forEach(function(n){if(n.from===t)t=n.to});
+        return t;
+      }
+      var byTitle={};
+      Object.keys(q.pages||{}).forEach(function(id){
+        var p=q.pages[id];if(p.thumbnail)byTitle[p.title]=p.thumbnail.source;
+      });
+      titles.forEach(function(t){var u=byTitle[resolve(t)];if(u)map[t]=u});
+    }).catch(function(){}).then(function(){loadPortraits(map)});
+  })();
+
+  /* ---------- slides ---------- */
+  var slides=[].slice.call(document.querySelectorAll('.slide'));
+  var i=0,total=slides.length;
+  var progress=document.getElementById('progress'),count=document.getElementById('count'),
+      notes=document.getElementById('notes'),ntext=document.getElementById('ntext'),
+      ntime=document.getElementById('ntime'),timer=document.getElementById('timer');
+
+  var PART2_START=10; /* index of the "Part Two" divider slide */
+  var stage=document.getElementById('stage'),busy=false,ready=false;
+  function partOf(k){return k>=PART2_START?2:1}
+  function show(n){
+    if(busy)return;
+    var ni=Math.max(0,Math.min(total-1,n));
+    if(ready&&ni!==i&&partOf(ni)!==partOf(i)){transition(partOf(i),partOf(ni),function(){showNow(ni)});return}
+    showNow(ni);
+  }
+  function showNow(n){
+    var prevI=i;
+    i=Math.max(0,Math.min(total-1,n));
+    stage.setAttribute('data-theme',partOf(i)===2?'sci':'vintage');
+    if(i!==prevI&&typeof stopAll==='function')stopAll();
+    slides.forEach(function(s,k){
+      s.classList.toggle('active',k===i);
+      if(k===i)s.scrollTop=0;
+    });
+    count.textContent=(i+1)+' / '+total;
+    progress.style.width=((i+1)/total*100)+'%';
+    var s=slides[i];
+    ntext.textContent=s.getAttribute('data-say')||'';
+    ntime.innerHTML=s.getAttribute('data-time')||'';
+    timer.innerHTML='⏱ '+(s.getAttribute('data-time')||'');
+    try{history.replaceState(null,'','#'+(i+1))}catch(e){}
+  }
+  function next(){show(i+1)} function prev(){show(i-1)}
+
+  /* ---------- timeline ---------- */
+  var events=[
+    {y:'1879',l:'Leipzig lab opens',t:'Wundt opens the first psychology laboratory',w:'Wilhelm Wundt',s:2,d:'At the University of Leipzig, Wundt opens the first laboratory devoted entirely to psychological research and begins experiments on sensation, attention and reaction time. Psychology starts to stand apart from philosophy and physiology.'},
+    {y:'1883',l:'Leipzig grows',t:'Leipzig becomes a centre of psychology',w:'Wilhelm Wundt',s:3,d:'Wundt launches the first journal for psychological research, Philosophische Studien, and the university formally recognises his laboratory. Students from many countries arrive to train there and carry the new science home.'},
+    {y:'1890',l:'Principles of Psychology',t:'William James publishes Principles of Psychology',w:'William James',s:4,d:'Two volumes, around 1,200 pages and twelve years in the making. It sees the mind as purposeful and selective, and gives us the \u201cstream of consciousness\u201d.'},
+    {y:'1892',l:'Structuralism at Cornell',t:'Titchener brings structuralism to Cornell',w:'Edward Titchener',s:4,d:'Wundt\u2019s former student takes up his post at Cornell University and goes on to build the largest psychology doctoral programme in the United States of his day.'},
+    {y:'1894',l:'First woman PhD',t:'First woman to earn a PhD in psychology',w:'Margaret Floy Washburn',s:4,d:'Titchener\u2019s first graduate student, Margaret Floy Washburn, becomes the first woman awarded a PhD in psychology.'},
+    {y:'1900',l:'Interpretation of Dreams',t:'The Interpretation of Dreams',w:'Sigmund Freud',s:6,d:'Published at the end of 1899 and dated 1900, it sets out Freud\u2019s ideas on the unconscious, repression and dream analysis \u2014 the heart of psychoanalysis.'},
+    {y:'1912',l:'Gestalt begins',t:'Gestalt psychology takes shape',w:'Max Wertheimer',s:5,d:'Wertheimer\u2019s study of apparent motion, the phi phenomenon, shows that we perceive organised wholes, not just separate sensations.'},
+    {y:'1913',l:'Behaviourist manifesto',t:'The behaviourist manifesto',w:'John B. Watson',s:7,d:'Watson argues that psychology should study only observable, measurable behaviour rather than introspection.'},
+    {y:'1920',l:'Little Albert',t:'The Little Albert experiment',w:'Watson & Rayner',s:7,d:'A white rat is paired with a loud noise and a baby learns to fear it \u2014 evidence that emotions can be conditioned.'},
+    {y:'1924',l:'Little Peter',t:'Reducing fear: counterconditioning',w:'Mary Cover Jones',s:7,d:'Cover Jones gradually removes a young boy\u2019s fear of a rabbit, an early step toward behaviour therapy.'}
+  ];
+  var track=document.getElementById('tlTrack'),cur=0,nodes=[];
+  events.forEach(function(e,idx){
+    var b=document.createElement('button');
+    b.className='node';b.setAttribute('aria-label',e.y+' '+e.t);
+    b.innerHTML='<span class="yr">'+e.y+'</span><span class="dot"></span><span class="lb">'+e.l+'</span>';
+    /* year above the line, dot on the line */
+    b.style.paddingTop='0';
+    b.onclick=function(){pick(idx,true)};
+    track.appendChild(b);nodes.push(b);
+  });
+  var det=document.getElementById('tlDetail');
+  function pick(n,scroll){
+    cur=Math.max(0,Math.min(events.length-1,n));
+    var e=events[cur];
+    nodes.forEach(function(nd,k){nd.classList.toggle('on',k===cur)});
+    document.getElementById('tlYear').textContent=e.y;
+    document.getElementById('tlWho').textContent=e.w;
+    document.getElementById('tlTitle').textContent=e.t;
+    document.getElementById('tlText').textContent=e.d;
+    det.classList.remove('swap');void det.offsetWidth;det.classList.add('swap');
+    if(scroll){nodes[cur].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'})}
+    document.getElementById('tlPrev').disabled=cur===0;
+    document.getElementById('tlNext').disabled=cur===events.length-1;
+  }
+  document.getElementById('tlPrev').onclick=function(){pick(cur-1,true)};
+  document.getElementById('tlNext').onclick=function(){pick(cur+1,true)};
+  document.getElementById('tlOpen').onclick=function(){show(events[cur].s)};
+  pick(0,false);
+
+  /* ---------- narrator (reads the pointers aloud) ---------- */
+  var synth=window.speechSynthesis;
+  var Narr={token:0,queue:[],idx:0,playing:false,paused:false,gap:null,owner:null,u:null};
+  var narrators=[],mainNarr={};
+  var FEMALE=/Sonia|Libby|Maisie|Neerja|Heera|Aria|Jenny|Michelle|Emma|Ava|Serena|Kate|Moira|Fiona|Tessa|Samantha|Karen|Susan|Hazel|Zira|Victoria|Allison|Female|Catherine|Amy|Joanna|Salli|Kendra|Kimberly|Nicole|Raveena|Veena|Isha|Natasha|Clara/i;
+  var MALE=/David|Mark|Daniel|George|Ryan|Alex|Fred|Thomas|Oliver|\bMale\b|Guy|Davis|Eric|Christopher|Brian|Prabhat|Ravi|Hemant|Rishi|Arthur|Gordon|Rocko|Reed|Eddy|Jacques/;
+  var S={voice:'',rate:0.88,pitch:0.95};
+  try{var sv=JSON.parse(localStorage.getItem('hop-voice-gb')||'null');if(sv)for(var key in sv)S[key]=sv[key]}catch(e){}
+  function saveS(){try{localStorage.setItem('hop-voice-gb',JSON.stringify(S))}catch(e){}}
+  var voices=[];
+  function score(v){
+    var n=v.name||'',l=(v.lang||'').replace('_','-'),s=0;
+    if(!/^en/i.test(l))return -999;
+    if(MALE.test(n))return -500;
+    if(/Natural|Online|Neural/i.test(n))s+=60;
+    if(FEMALE.test(n))s+=40;
+    /* British first; Indian-English voices are pushed to the bottom */
+    if(/en-GB/i.test(l))s+=200;else if(/en-IN/i.test(l)||/Neerja|Heera|Ravi|Veena|Isha|Raveena/i.test(n))s-=200;else if(/en-US/i.test(l))s+=8;
+    if(/Sonia|Libby|Maisie|Serena|Kate|Fiona|Hazel|Susan/i.test(n))s+=15;
+    return s;
+  }
+  function populate(){
+    if(!synth)return;
+    voices=(synth.getVoices()||[]).filter(function(v){return score(v)>-900}).sort(function(a,b){return score(b)-score(a)});
+    var sel=document.getElementById('vsel');sel.innerHTML='';
+    voices.forEach(function(v,k){
+      var o=document.createElement('option');o.value=v.name;
+      o.textContent=(k===0?'\u2605 ':'')+v.name+' ('+v.lang+')';sel.appendChild(o);
+    });
+    if(!voices.some(function(v){return v.name===S.voice}))S.voice=voices[0]?voices[0].name:'';
+    sel.value=S.voice;
+  }
+  function pickedVoice(){return voices.filter(function(v){return v.name===S.voice})[0]||null}
+
+  var ONES=['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  var TENS=['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
+  function below100(n){return n<20?ONES[n]:TENS[Math.floor(n/10)]+(n%10?'-'+ONES[n%10]:'')}
+  /* 1883 -> "eighteen eighty-three", 1900 -> "nineteen hundred", 1905 -> "nineteen oh five" */
+  function yearWords(y){
+    var a=Math.floor(y/100),b=y%100;
+    if(b===0)return below100(a)+' hundred';
+    if(b<10)return below100(a)+' oh '+ONES[b];
+    return below100(a)+' '+below100(b);
+  }
+  /* 1920s -> "nineteen twenties", 1990s -> "nineteen nineties" */
+  function decadeWords(y){
+    var a=Math.floor(y/100),b=y%100;
+    if(b===0)return below100(a)+' hundreds';
+    var w=TENS[Math.floor(b/10)];
+    return below100(a)+' '+(b===10?'tens':w.replace(/y$/,'ies'));
+  }
+  function speakable(t){
+    return t.replace(/\s+/g,' ').trim()
+      .replace(/Roll No\.?\s*(\d+)/i,function(m,d){return 'Roll number '+d.split('').join(' ')})
+      .replace(/(^|[^\d,.])(1[1-9]\d0)s\b/g,function(m,pre,y){return pre+decadeWords(parseInt(y,10))})
+      .replace(/(^|[^\d,.])(1[1-9]\d\d)(?![\d,]|\.\d)/g,function(m,pre,y){return pre+yearWords(parseInt(y,10))})
+      .replace(/\bB\. F\. /g,'B F ')
+      .replace(/\bfMRI\b/g,'F M R I')
+      .replace(/\b(ACTH|TSH|FSH|ADH|CRH|HPA|GH|LH)\b/g,function(m){return m.split('').join(' ')})
+      .replace(/L-DOPA/g,'L dopa')
+      .replace(/\bD2\b/g,'D two')
+      .replace(/(\d+) percent/g,'$1 percent')
+      .replace(/\bFYBA\b/g,'F Y B A')
+      .replace(/\u2192/g,', then ')
+      .replace(/\s\|\s/g,', ')
+      .replace(/&/g,' and ')
+      .replace(/\u2014/g,', ')
+      .replace(/Q and A/g,'questions and answers')
+      .replace(/\bvs\.?\b/g,'versus');
+  }
+  function textOf(el){
+    if(el.tagName==='TR'){return [].map.call(el.querySelectorAll('td'),function(td){return td.textContent}).join(', ')}
+    return el.textContent;
+  }
+  function items(nodes){
+    return nodes.map(function(el){return {el:el,text:speakable(textOf(el))}}).filter(function(x){return x.text});
+  }
+  function mainNodes(slide){
+    var sel='h1,h2,.sub,.chip,.card .tag,.card h3,li,.quote,.example,.key,.card p,tbody tr,.final,.qtr,.qby,.thanks';
+    return [].filter.call(slide.querySelectorAll(sel),function(el){
+      /* the German quote is skipped: an English voice would mangle it, so the translation is read instead */
+      return !el.closest('details.deep')&&!el.closest('.tree')&&!el.closest('.narr')&&!el.closest('.srcs')&&!el.closest('.diagram')&&!el.classList.contains('de');
+    });
+  }
+  /* wrap the text in an inline span so the highlight covers every line of a wrapped sentence */
+  function wrapHl(el){
+    if(el.dataset.hl||el.tagName==='TR')return;
+    el.dataset.hl='1';
+    if(/\b(key|example|chip)\b/.test(el.className))return;
+    var s=document.createElement('span');s.className='hl';
+    while(el.firstChild)s.appendChild(el.firstChild);
+    el.appendChild(s);
+  }
+  function mark(el){
+    wrapHl(el);
+    el.classList.add('reading');
+    try{el.scrollIntoView({block:'nearest',behavior:'smooth'})}catch(e){}
+  }
+  function clearMarks(){[].forEach.call(document.querySelectorAll('.reading'),function(e){e.classList.remove('reading')})}
+  function ui(){
+    narrators.forEach(function(n){
+      var st=n===Narr.owner?(Narr.playing?'playing':(Narr.paused?'paused':'idle')):'idle';
+      n.root.setAttribute('data-state',st);
+      n.btn.innerHTML=st==='playing'?'\u23F8 Pause':(st==='paused'?'\u25B6 Resume':'\u25B6 '+n.label);
+    });
+  }
+  function step(){
+    if(!Narr.playing)return;
+    if(Narr.idx>=Narr.queue.length){finish();return}
+    var it=Narr.queue[Narr.idx],tok=Narr.token;
+    clearMarks();mark(it.el);
+    var u=new SpeechSynthesisUtterance(it.text);
+    var v=pickedVoice();if(v){u.voice=v;u.lang=v.lang}
+    u.rate=S.rate;u.pitch=S.pitch;u.volume=1;
+    u.onend=function(){
+      if(tok!==Narr.token||!Narr.playing)return;
+      Narr.idx++;
+      var head=/^H[123]$/.test(it.el.tagName)||it.el.classList.contains('tag');
+      Narr.gap=setTimeout(step,head?850:620);
+    };
+    u.onerror=function(e){
+      if(tok!==Narr.token)return;
+      if(e&&(e.error==='interrupted'||e.error==='canceled'))return;
+      Narr.idx++;Narr.gap=setTimeout(step,200);
+    };
+    Narr.u=u;synth.speak(u);
+  }
+  function stopAll(){
+    if(!synth)return;
+    Narr.token++;Narr.playing=false;Narr.paused=false;clearTimeout(Narr.gap);
+    synth.cancel();clearMarks();Narr.owner=null;Narr.idx=0;ui();
+  }
+  function finish(){clearMarks();Narr.playing=false;Narr.paused=false;Narr.owner=null;Narr.idx=0;ui()}
+  function play(n){
+    stopAll();
+    Narr.owner=n;Narr.queue=n.getItems();Narr.idx=0;Narr.playing=true;Narr.paused=false;
+    ui();setTimeout(step,90);
+  }
+  function pause(){
+    Narr.playing=false;Narr.paused=true;Narr.token++;clearTimeout(Narr.gap);synth.cancel();ui();
+  }
+  function resume(){
+    Narr.playing=true;Narr.paused=false;Narr.token++;ui();setTimeout(step,90);
+  }
+  function makeNarrator(host,label,getItems){
+    var root=document.createElement('div');
+    root.className='narr';root.setAttribute('data-state','idle');
+    root.innerHTML='<button class="listen" type="button"></button><button class="stopb" type="button" title="Stop">\u25A0</button><span class="eq"><i></i><i></i><i></i><i></i></span>';
+    host.insertBefore(root,host.firstChild);
+    var n={root:root,btn:root.querySelector('.listen'),label:label,getItems:getItems};
+    n.btn.onclick=function(){
+      if(Narr.owner===n){
+        if(Narr.playing)pause();else if(Narr.paused)resume();else play(n);
+      }else play(n);
+    };
+    root.querySelector('.stopb').onclick=stopAll;
+    narrators.push(n);
+    return n;
+  }
+  if(synth){
+    slides.forEach(function(s,idx){
+      if(idx<2)return; /* no narration on the title and timeline slides */
+      var getter=function(){return items(mainNodes(s))};
+      mainNarr[idx]=makeNarrator(s,'Listen',getter);
+      [].forEach.call(s.querySelectorAll('details.deep .in'),function(box){
+        makeNarrator(box,'Listen to this box',function(){return items([].slice.call(box.querySelectorAll('li')))});
+      });
+    });
+    ui();
+    populate();
+    synth.onvoiceschanged=populate;
+    setTimeout(populate,600);setTimeout(populate,1800);
+    var vsel=document.getElementById('vsel'),vrate=document.getElementById('vrate'),vpitch=document.getElementById('vpitch');
+    vrate.value=S.rate;vpitch.value=S.pitch;
+    vsel.onchange=function(){S.voice=vsel.value;saveS()};
+    vrate.oninput=function(){S.rate=parseFloat(vrate.value);saveS()};
+    vpitch.oninput=function(){S.pitch=parseFloat(vpitch.value);saveS()};
+    document.getElementById('vtest').onclick=function(){
+      stopAll();
+      var u=new SpeechSynthesisUtterance('Good evening. This is how I shall read your slides.');
+      var v=pickedVoice();if(v){u.voice=v;u.lang=v.lang}
+      u.rate=S.rate;u.pitch=S.pitch;Narr.u=u;synth.speak(u);
+    };
+    document.getElementById('voiceBtn').onclick=function(){document.getElementById('vpanel').classList.toggle('show')};
+  }else{
+    document.getElementById('voiceBtn').style.display='none';
+  }
+  function toggleMain(){
+    var n=mainNarr[i];if(!n)return;
+    if(Narr.owner===n){if(Narr.playing)pause();else if(Narr.paused)resume();else play(n)}else play(n);
+  }
+  window.addEventListener('pagehide',function(){if(synth)synth.cancel()});
+
+  /* ---------- theme change: the vintage paper burns away, the sci-fi theme scans in ---------- */
+  var reduced=!!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches);
+  function hash(n){var x=Math.sin(n*127.1+311.7)*43758.5453;return x-Math.floor(x)}
+  function vnoise(x){var k=Math.floor(x),f=x-k,u=f*f*(3-2*f);return hash(k)*(1-u)+hash(k+1)*u}
+  function fbm(x){return vnoise(x)*.55+vnoise(x*2.1+7)*.28+vnoise(x*4.3+13)*.17}
+  function ease(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
+  function burnY(x,p,W,H){
+    var base=(H+600)*(1-p)-300;
+    var tilt=(x/W-.5)*220;
+    var n=(fbm(x*0.007+p*2.2)-.5)*260+(fbm(x*0.03+p*6)-.5)*70;
+    return base+tilt+n;
+  }
+  function scanY(x,p,W,H){
+    var base=-60+(H+120)*p,col=Math.floor(x/26);
+    return base+(hash(col+Math.floor(p*40)*7.3)-.5)*46;
+  }
+  function tracePath(ctx,pts){ctx.beginPath();pts.forEach(function(q,j){if(j)ctx.lineTo(q[0],q[1]);else ctx.moveTo(q[0],q[1])})}
+  function transition(from,to,swap){
+    if(reduced){swap();return}
+    busy=true;stopAll();
+    var W=window.innerWidth,H=window.innerHeight,dpr=Math.min(window.devicePixelRatio||1,1.5);
+    /* freeze a copy of the CURRENT look on top; the real deck underneath switches to the new slide + theme */
+    var old=stage.cloneNode(true);
+    old.removeAttribute('id');old.classList.remove('booting');
+    [].forEach.call(old.querySelectorAll('[id]'),function(e){e.removeAttribute('id')});
+    var layer=document.createElement('div');layer.className='tlayer';layer.appendChild(old);
+    var cv=document.createElement('canvas');cv.className='tcanvas';cv.width=W*dpr;cv.height=H*dpr;
+    document.body.appendChild(layer);document.body.appendChild(cv);
+    var ctx=cv.getContext('2d');ctx.scale(dpr,dpr);
+    swap();
+    var burning=(from===1&&to===2),dur=burning?2900:1500,t0=performance.now(),last=t0,sparks=[],booted=false;
+    function frame(now){
+      var t=Math.min(1,(now-t0)/dur),p=ease(t),dt=Math.min(.05,(now-last)/1000),k,x,y;last=now;
+      var pts=[],poly=[];
+      for(x=W;x>=-6;x-=6){y=burning?burnY(x,p,W,H):scanY(x,p,W,H);pts.push([x,Math.max(-60,Math.min(H+60,y))])}
+      poly.push(burning?'0px 0px':'0px 100%',burning?'100% 0px':'100% 100%');
+      pts.forEach(function(q){poly.push(q[0]+'px '+q[1]+'px')});
+      layer.style.clipPath='polygon('+poly.join(',')+')';
+      ctx.clearRect(0,0,W,H);ctx.lineJoin='round';
+      if(burning){
+        ctx.save();ctx.translate(0,-14);tracePath(ctx,pts);
+        ctx.strokeStyle='rgba(28,12,4,.8)';ctx.lineWidth=30;ctx.shadowColor='rgba(40,16,0,.9)';ctx.shadowBlur=24;ctx.stroke();ctx.restore();
+        ctx.save();tracePath(ctx,pts);
+        ctx.strokeStyle='#ff5a00';ctx.lineWidth=9*(1+Math.random()*.5);ctx.shadowColor='#ff4a00';ctx.shadowBlur=34;ctx.stroke();
+        ctx.strokeStyle='#ffb52e';ctx.lineWidth=5;ctx.shadowBlur=18;ctx.stroke();
+        ctx.strokeStyle='#fff3c0';ctx.lineWidth=2;ctx.shadowColor='#ffd27a';ctx.shadowBlur=10;ctx.stroke();ctx.restore();
+        for(k=0;k<7&&t<.97;k++){x=Math.random()*W;y=burnY(x,p,W,H);sparks.push({x:x,y:y,vx:(Math.random()-.5)*50,vy:-(40+Math.random()*130),life:0,max:.5+Math.random(),s:1+Math.random()*2.2})}
+        ctx.save();ctx.globalCompositeOperation='lighter';
+        sparks=sparks.filter(function(s){
+          s.life+=dt;if(s.life>s.max)return false;
+          s.x+=s.vx*dt;s.y+=s.vy*dt;s.vy+=20*dt;
+          var a=1-s.life/s.max;
+          ctx.fillStyle='rgba(255,'+((110+120*a)|0)+',40,'+a+')';
+          ctx.beginPath();ctx.arc(s.x,s.y,s.s*a+.4,0,6.283);ctx.fill();return true;
+        });
+        ctx.restore();
+      }else{
+        ctx.save();tracePath(ctx,pts);
+        ctx.strokeStyle='rgba(25,227,255,.25)';ctx.lineWidth=46;ctx.shadowColor='#19e3ff';ctx.shadowBlur=40;ctx.stroke();
+        ctx.strokeStyle='#19e3ff';ctx.lineWidth=4;ctx.shadowBlur=22;ctx.stroke();
+        ctx.strokeStyle='#e8fdff';ctx.lineWidth=1.5;ctx.shadowBlur=8;ctx.stroke();ctx.restore();
+        ctx.fillStyle='rgba(255,79,216,.55)';
+        for(k=0;k<14;k++){x=Math.random()*W;y=scanY(x,p,W,H);ctx.fillRect(x,y+(Math.random()-.5)*30,20+Math.random()*60,2)}
+      }
+      if(!booted&&t>(burning?.3:.2)){
+        booted=true;
+        if(to===2){stage.classList.add('booting');setTimeout(function(){stage.classList.remove('booting')},1700)}
+      }
+      if(t<1){requestAnimationFrame(frame)}
+      else{layer.remove();cv.remove();busy=false}
+    }
+    requestAnimationFrame(frame);
+  }
+
+  /* ---------- controls ---------- */
+  document.getElementById('next').onclick=next;
+  document.getElementById('prev').onclick=prev;
+  document.getElementById('tlBtn').onclick=function(){show(1)};
+  document.getElementById('notesBtn').onclick=function(){notes.classList.toggle('show')};
+  document.getElementById('fsBtn').onclick=toggleFS;
+  function toggleFS(){
+    if(!document.fullscreenElement){var el=document.documentElement;if(el.requestFullscreen)el.requestFullscreen()}
+    else{document.exitFullscreen()}
+  }
+  document.addEventListener('keydown',function(e){
+    var k=e.key;
+    if(e.target&&/^(SELECT|INPUT|TEXTAREA)$/.test(e.target.tagName))return;
+    if(k===' '&&e.target&&e.target.tagName==='BUTTON')return;
+    if(k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();next()}
+    else if(k==='ArrowLeft'||k==='PageUp'){prev()}
+    else if(k==='Home'){show(0)}
+    else if(k==='End'){show(total-1)}
+    else if(k==='n'||k==='N'){notes.classList.toggle('show')}
+    else if(k==='f'||k==='F'){toggleFS()}
+    else if(k==='t'||k==='T'){show(1)}
+    else if(k==='l'||k==='L'){toggleMain()}
+    else if(k==='d'||k==='D'){
+      var dd=slides[i].querySelector('details.deep');if(dd)dd.open=!dd.open;
+    }
+  });
+  var sx=null;
+  document.addEventListener('touchstart',function(e){
+    if(e.target.closest&&e.target.closest('.tl-wrap')){sx=null;return}
+    sx=e.touches[0].clientX
+  },{passive:true});
+  document.addEventListener('touchend',function(e){
+    if(sx===null)return;
+    var dx=e.changedTouches[0].clientX-sx;
+    if(Math.abs(dx)>70){dx<0?next():prev()}
+    sx=null;
+  },{passive:true});
+
+  var start=parseInt((location.hash||'').replace('#',''),10);
+  showNow(isNaN(start)?0:start-1);
+  ready=true;
+})();
+</script>
+</body>
+</html>
